@@ -16,3 +16,7 @@
   justify-content: space-evenly;
   align-content: center;
 }
+img {
+  object-fit: cover;
+  height: 100px;
+}
