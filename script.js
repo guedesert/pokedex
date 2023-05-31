@@ -1,7 +1,7 @@
 // Aguarda o carregamento completo da página
 window.addEventListener("DOMContentLoaded", function () {
   // Faz uma requisição fetch para obter o JSON da URL fornecida
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0")
     .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
       const results = data.results // Obtém o array de resultados do JSON
@@ -39,7 +39,11 @@ window.addEventListener("DOMContentLoaded", function () {
           .then((response) => response.json()) // Converte a resposta para JSON
           .then((pokemonData) => {
             // Obtém a URL da imagem front_default
-            const imageUrl = pokemonData.sprites.other.home.front_default
+            let imageUrl = pokemonData.sprites.other.home.front_default
+            if (!imageUrl) {
+              imageUrl =
+                pokemonData.sprites.other["official-artwork"].front_default
+            }
 
             // Define o atributo src da imagem com a URL obtida
             img.src = imageUrl
