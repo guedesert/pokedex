@@ -1,13 +1,13 @@
 // Aguarda o carregamento completo da página
 window.addEventListener("DOMContentLoaded", function () {
   // Faz uma requisição fetch para obter o JSON da URL fornecida
-  fetch("https://pokeapi.co/api/v2/pokemon?limit=1010&offset=0")
+  fetch("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
     .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
       const results = data.results // Obtém o array de resultados do JSON
 
       // Obtém a referência para a div que irá conter os Pokémons
-      const pokemonList = document.getElementById("pokemonList")
+      const pokemonList = document.getElementById("gen1")
 
       // Itera sobre cada objeto no array de resultados
       results.forEach((result) => {
@@ -20,16 +20,15 @@ window.addEventListener("DOMContentLoaded", function () {
         div.classList.add("pokemon")
         typesDiv.classList.add("types")
 
-        // Define o texto do elemento name com o nome do Pokémon
-        name.textContent =
-          modifyName(result.name)
-        
-        function modifyName(name){
+        // Define o texto do elemento name com o nome do Pokémon, que será modificado de acordo com a função modifyName()
+        name.textContent = modifyName(result.name)
+
+        function modifyName(name) {
           const femaleSymbol = " ♀"
           const maleSymbol = " ♂"
-          if (name.includes("-f")) {
+          if (name.includes("nidoran-f")) {
             name = name.replace(/-f/g, femaleSymbol)
-          } else if (name.includes("-m")) {
+          } else if (name.includes("nidoran-m")) {
             name = name.replace(/-m/g, maleSymbol)
           }
           name = name.charAt(0).toUpperCase() + name.slice(1)

@@ -1,4 +1,4 @@
-#pokemonList {
+.gen {
   display: flex;
   flex-wrap: wrap;
 }
